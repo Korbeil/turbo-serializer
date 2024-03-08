@@ -1,0 +1,34 @@
+{
+    "name": "korbeil/serializer-on-steroids",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Mathias Arlaud",
+            "email": "mathias.arlaud@gmail.com"
+        },
+        {
+            "name": "Baptiste Leduc",
+            "email": "baptiste.leduc@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:mtarld/json-encoder-bundle.git",
+            "no-api": true
+        }
+    ],
+    "require": {
+        "php": ">=8.3",
+        "jolicode/automapper-bundle": "^8.0",
+        "mtarld/json-encoder-bundle": "@dev",
+        "symfony/serializer": "7.1.x-dev"
+    },
+    "autoload": {
+        "psr-4": { "TurboSerializer\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "TurboSerializer\\Tests\\": "tests/" }
+    }
+}
