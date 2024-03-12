@@ -10,6 +10,8 @@ use Symfony\Component\TypeInfo\Type;
 
 readonly class Serializer implements SerializerInterface
 {
+    public const DTO_PROXY = 'turbo_dto_proxy';
+
     public function __construct(
         private EncoderInterface $encoder,
         private DecoderInterface $decoder,
@@ -19,17 +21,22 @@ readonly class Serializer implements SerializerInterface
 
     public function serialize(mixed $data, string $format, array $context = []): string
     {
-        /** @var array $array */
-        $array = $this->autoMapper->map($data, 'array');
+        if (array_key_exists(static::DTO_PROXY, $context)) {
+            $data = $this->autoMapper->map($data, $context[static::DTO_PROXY]);
+        }
 
-        return $this->encoder->encode($array);
+        return $this->encoder->encode($data);
     }
 
     public function deserialize(mixed $data, string $type, string $format, array $context = []): mixed
     {
-        /** @var array $decoded */
-        $decoded = $this->decoder->decode($data, Type::array());
+        if (array_key_exists(static::DTO_PROXY, $context)) {
+            /** @var T $proxy */
+            $proxy = $this->decoder->decode($data, Type::object($context[static::DTO_PROXY]));
 
-        return $this->autoMapper->map($decoded, $type);
+            return $this->autoMapper->map($proxy, $type, $context);
+        }
+
+        return $this->decoder->decode($data, Type::object($type));
     }
 }
