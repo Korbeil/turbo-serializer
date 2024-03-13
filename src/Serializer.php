@@ -31,7 +31,6 @@ readonly class Serializer implements SerializerInterface
     public function deserialize(mixed $data, string $type, string $format, array $context = []): mixed
     {
         if (array_key_exists(static::DTO_PROXY, $context)) {
-            /** @var T $proxy */
             $proxy = $this->decoder->decode($data, Type::object($context[static::DTO_PROXY]));
 
             return $this->autoMapper->map($proxy, $type, $context);
