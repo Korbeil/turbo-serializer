@@ -1,0 +1,13 @@
+framework:
+  secret: turbo-serializer
+  property_info: ~
+  type_info: ~
+  test: ~
+
+automapper:
+  map_private_properties: true
+  warmup:
+    - { source: 'TurboSerializer\Tests\Fixtures\NormalizedNursery', target: 'TurboSerializer\Tests\Fixtures\Nursery' }
+
+json_encoder:
+  encodable_path: '%kernel.project_dir%/../../Fixtures'

@@ -3,19 +3,18 @@
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use AutoMapper\AutoMapperInterface;
-use Mtarld\JsonEncoderBundle\DecoderInterface;
-use Mtarld\JsonEncoderBundle\EncoderInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use TurboSerializer\Serializer;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
-        ->set('serializer', Serializer::class)
+        ->set('.turbo.serializer', Serializer::class)
         ->args([
-            service(EncoderInterface::class),
-            service(DecoderInterface::class),
+            service('json_encoder.encoder'),
+            service('json_encoder.decoder'),
             service(AutoMapperInterface::class),
         ])
-        ->alias(SerializerInterface::class, 'serializer')
+        ->public()
+        ->alias(SerializerInterface::class, '.turbo.serializer')
     ;
 };
