@@ -2,17 +2,10 @@
 
 namespace TurboSerializer\Tests\Fixtures;
 
-use Doctrine\Common\Collections\Collection;
-
-readonly class Nursery
+class Nursery
 {
-    /**
-     * @param Collection<Cat> $cats
-     */
-    public function __construct(
-        public string $name,
-        public Collection $cats,
-        public int $total = 0,
-    ) {
-    }
+    public string $name;
+    /** @var list<Cat> $cats */
+    public array $cats;
+    public int $total = 0;
 }
