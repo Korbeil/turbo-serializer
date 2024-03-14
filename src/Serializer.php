@@ -7,6 +7,7 @@ use Mtarld\JsonEncoderBundle\DecoderInterface;
 use Mtarld\JsonEncoderBundle\EncoderInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\TypeInfo\Type;
+use Symfony\Component\TypeInfo\TypeResolver\StringTypeResolver;
 
 readonly class Serializer implements SerializerInterface
 {
@@ -16,6 +17,7 @@ readonly class Serializer implements SerializerInterface
         private EncoderInterface $encoder,
         private DecoderInterface $decoder,
         private AutoMapperInterface $autoMapper,
+        private StringTypeResolver $resolver,
     ) {
     }
 
@@ -36,6 +38,6 @@ readonly class Serializer implements SerializerInterface
             return $this->autoMapper->map($proxy, $type, $context);
         }
 
-        return $this->decoder->decode($data, Type::object($type));
+        return $this->decoder->decode($data, $this->resolver->resolve($type));
     }
 }

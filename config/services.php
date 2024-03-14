@@ -13,6 +13,7 @@ return static function (ContainerConfigurator $container) {
             service('json_encoder.encoder'),
             service('json_encoder.decoder'),
             service(AutoMapperInterface::class),
+            service('type_info.resolver.string'),
         ])
         ->public()
         ->alias(SerializerInterface::class, '.turbo.serializer')

@@ -3,6 +3,9 @@
 namespace DummyApp;
 
 use AutoMapper\Bundle\AutoMapperBundle;
+use AutoMapper\Tests\Fixtures\AddressDTO;
+use AutoMapper\Transformer\CustomTransformer\CustomModelTransformerInterface;
+use AutoMapper\Transformer\CustomTransformer\CustomPropertyTransformerInterface;
 use Mtarld\JsonEncoderBundle\DependencyInjection\JsonEncodablePass;
 use Mtarld\JsonEncoderBundle\DependencyInjection\JsonEncoderPass;
 use Mtarld\JsonEncoderBundle\DependencyInjection\RuntimeServicesPass;
@@ -12,6 +15,9 @@ use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Component\PropertyInfo\Type;
+use TurboSerializer\Tests\Fixtures\NormalizedNursery;
+use TurboSerializer\Tests\Fixtures\Nursery;
 use TurboSerializer\TurboSerializerBundle;
 
 class AppKernel extends Kernel
@@ -36,5 +42,21 @@ class AppKernel extends Kernel
     public function getProjectDir(): string
     {
         return __DIR__ . '/..';
+    }
+}
+
+class NurseryTransformer implements CustomPropertyTransformerInterface
+{
+    public function supports(string $source, string $target, string $propertyName): bool
+    {
+        return
+            NormalizedNursery::class === $source &&
+            Nursery::class === $target &&
+            'total' === $propertyName;
+    }
+
+    public function transform(object|array $source): mixed
+    {
+        return \count($source->cats);
     }
 }

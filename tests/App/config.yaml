@@ -11,3 +11,9 @@ automapper:
 
 json_encoder:
   encodable_path: '%kernel.project_dir%/../../Fixtures'
+
+services:
+  _defaults:
+    autoconfigure: true
+
+  DummyApp\NurseryTransformer: ~

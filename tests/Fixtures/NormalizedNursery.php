@@ -2,7 +2,7 @@
 
 namespace TurboSerializer\Tests\Fixtures;
 
-readonly class NormalizedNursery
+class NormalizedNursery
 {
     public string $name;
     /** @var list<Cat> */

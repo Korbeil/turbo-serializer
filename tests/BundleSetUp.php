@@ -13,7 +13,6 @@ abstract class BundleSetUp extends KernelTestCase
         $_SERVER['KERNEL_DIR'] = __DIR__ . '/App';
         $_SERVER['KERNEL_CLASS'] = 'DummyApp\AppKernel';
 
-        // @fixme for debugging, to un-comment
-        // (new Filesystem())->remove(__DIR__ . '/var/cache/test');
+        (new Filesystem())->remove(__DIR__ . '/var/cache/test');
     }
 }

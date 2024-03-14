@@ -31,9 +31,7 @@
     },
     "autoload-dev": {
         "psr-4": { "TurboSerializer\\Tests\\": "tests/" },
-        "classmap": [
-            "tests/App/AppKernel.php"
-        ]
+        "classmap": ["tests/App/AppKernel.php"]
     },
     "require-dev": {
         "phpunit/phpunit": "^10.5",

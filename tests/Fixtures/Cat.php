@@ -2,7 +2,7 @@
 
 namespace TurboSerializer\Tests\Fixtures;
 
-readonly class Cat
+class Cat
 {
     public string $name;
 }
