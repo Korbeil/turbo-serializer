@@ -1,6 +1,7 @@
 {
     "name": "korbeil/turbo-serializer",
     "type": "library",
+    "licence": "MIT",
     "authors": [
         {
             "name": "Mathias Arlaud",
@@ -24,7 +25,8 @@
         "mtarld/json-encoder-bundle": "@dev",
         "symfony/serializer": "^7.1@dev",
         "symfony/type-info": "^7.1@dev",
-        "symfony/var-exporter": "^7.1@dev"
+        "symfony/var-exporter": "^7.1@dev",
+        "phpstan/phpdoc-parser": "^1.26"
     },
     "autoload": {
         "psr-4": { "TurboSerializer\\": "src/" }

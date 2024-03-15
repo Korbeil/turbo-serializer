@@ -3,19 +3,13 @@
 namespace DummyApp;
 
 use AutoMapper\Bundle\AutoMapperBundle;
-use AutoMapper\Tests\Fixtures\AddressDTO;
-use AutoMapper\Transformer\CustomTransformer\CustomModelTransformerInterface;
 use AutoMapper\Transformer\CustomTransformer\CustomPropertyTransformerInterface;
-use Mtarld\JsonEncoderBundle\DependencyInjection\JsonEncodablePass;
-use Mtarld\JsonEncoderBundle\DependencyInjection\JsonEncoderPass;
-use Mtarld\JsonEncoderBundle\DependencyInjection\RuntimeServicesPass;
 use Mtarld\JsonEncoderBundle\JsonEncoderBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
-use Symfony\Component\PropertyInfo\Type;
 use TurboSerializer\Tests\Fixtures\NormalizedNursery;
 use TurboSerializer\Tests\Fixtures\Nursery;
 use TurboSerializer\TurboSerializerBundle;
