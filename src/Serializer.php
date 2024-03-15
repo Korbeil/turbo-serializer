@@ -41,10 +41,10 @@ final readonly class Serializer implements SerializerInterface
         if (array_key_exists(static::DTO_PROXY, $context)) {
             $data = $this->autoMapper->map($data, $context[static::DTO_PROXY]);
 
-            return (string) $this->encoder->encode($data, config: ['type' => $this->typeResolver->resolve($context[static::DTO_PROXY])]);
+            return (string) $this->encoder->encode($data, config: $context + ['type' => $this->typeResolver->resolve($context[static::DTO_PROXY])]);
         }
 
-        return (string) $this->encoder->encode($data);
+        return (string) $this->encoder->encode($data, $context);
     }
 
     /**
@@ -57,11 +57,11 @@ final readonly class Serializer implements SerializerInterface
         }
 
         if (array_key_exists(static::DTO_PROXY, $context)) {
-            $proxy = $this->decoder->decode($data, $this->typeResolver->resolve($context[static::DTO_PROXY]));
+            $proxy = $this->decoder->decode($data, $this->typeResolver->resolve($context[static::DTO_PROXY], $context));
 
             return $this->autoMapper->map($proxy, $type, $context);
         }
 
-        return $this->decoder->decode($data, $this->typeResolver->resolve($type));
+        return $this->decoder->decode($data, $this->typeResolver->resolve($type), $context);
     }
 }
