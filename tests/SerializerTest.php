@@ -29,7 +29,7 @@ final class SerializerTest extends BundleSetUp
     public function testDeserializeWithProxy(): void
     {
         /** @var Nursery $nursery */
-        $nursery = $this->serializer->deserialize(self::JSON, Nursery::class, 'json', [Serializer::NORMALIZED_SHAPE => NormalizedNursery::class]);
+        $nursery = $this->serializer->deserialize(self::JSON, Nursery::class, 'json', [Serializer::NORMALIZED_TYPE => NormalizedNursery::class]);
 
         $this->assertInstanceOf(Nursery::class, $nursery);
 
@@ -82,7 +82,7 @@ final class SerializerTest extends BundleSetUp
         $cat->name = 'Kit';
         $nursery->cats[] = $cat;
 
-        $nursery = $this->serializer->serialize($nursery, 'json', [Serializer::NORMALIZED_SHAPE => NormalizedNursery::class]);
+        $nursery = $this->serializer->serialize($nursery, 'json', [Serializer::NORMALIZED_TYPE => NormalizedNursery::class]);
 
         $this->assertSame(self::JSON, $nursery);
     }
