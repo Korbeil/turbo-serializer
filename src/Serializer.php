@@ -15,7 +15,7 @@ use TurboSerializer\Exception\UnsupportedException;
 
 final readonly class Serializer implements SerializerInterface
 {
-    public const DTO_PROXY = 'turbo_dto_proxy';
+    public const NORMALIZED_SHAPE = 'turbo_normalized_shape';
 
     /**
      * @param JsonEncoder $encoder
@@ -38,10 +38,10 @@ final readonly class Serializer implements SerializerInterface
             throw new UnsupportedException(sprintf('"%s" format is not supported', $format));
         }
 
-        if (array_key_exists(static::DTO_PROXY, $context)) {
-            $data = $this->autoMapper->map($data, $context[static::DTO_PROXY]);
+        if (array_key_exists(static::NORMALIZED_SHAPE, $context)) {
+            $data = $this->autoMapper->map($data, $context[static::NORMALIZED_SHAPE]);
 
-            return (string) $this->encoder->encode($data, config: $context + ['type' => $this->typeResolver->resolve($context[static::DTO_PROXY])]);
+            return (string) $this->encoder->encode($data, config: $context + ['type' => $this->typeResolver->resolve($context[static::NORMALIZED_SHAPE])]);
         }
 
         return (string) $this->encoder->encode($data, $context);
@@ -56,8 +56,8 @@ final readonly class Serializer implements SerializerInterface
             throw new UnsupportedException(sprintf('"%s" format is not supported', $format));
         }
 
-        if (array_key_exists(static::DTO_PROXY, $context)) {
-            $proxy = $this->decoder->decode($data, $this->typeResolver->resolve($context[static::DTO_PROXY], $context));
+        if (array_key_exists(static::NORMALIZED_SHAPE, $context)) {
+            $proxy = $this->decoder->decode($data, $this->typeResolver->resolve($context[static::NORMALIZED_SHAPE], $context));
 
             return $this->autoMapper->map($proxy, $type, $context);
         }
