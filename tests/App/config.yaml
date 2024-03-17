@@ -20,6 +20,13 @@ services:
 
 when@test:
   services:
+    _defaults:
+      autoconfigure: true
+      autowire: true
+
     turbo_serializer.alias:
       alias: turbo_serializer
+      public: true
+
+    DummyApp\TestService:
       public: true

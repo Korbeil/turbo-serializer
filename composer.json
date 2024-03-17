@@ -39,6 +39,7 @@
         "phpunit/phpunit": "^10.5",
         "symfony/http-kernel": "^7.0",
         "symfony/framework-bundle": "^7.1@dev",
+        "symfony/filesystem": "^7.1@dev",
         "symfony/yaml": "^7.0"
     }
 }
