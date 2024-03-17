@@ -6,7 +6,6 @@
         {"name": "Mathias Arlaud", "email": "mathias.arlaud@gmail.com"},
         {"name": "Baptiste Leduc", "email": "baptiste.leduc@gmail.com"}
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": ">=8.2",
         "jolicode/automapper-bundle": "^8.0",
