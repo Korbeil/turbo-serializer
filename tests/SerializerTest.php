@@ -10,7 +10,7 @@ use TurboSerializer\Tests\Fixtures\Nursery;
 
 final class SerializerTest extends BundleSetUp
 {
-    public const JSON = '{"name":"Holicats","cats":[{"name":"Marion"},{"name":"Benjamin"},{"name":"Kit"}]}';
+    private const JSON = '{"name":"Holicats","cats":[{"name":"Marion"},{"name":"Benjamin"},{"name":"Kit"}]}';
 
     public function testDeserialize(): void
     {
@@ -30,7 +30,9 @@ final class SerializerTest extends BundleSetUp
     public function testDeserializeWithProxy(): void
     {
         /** @var Nursery $nursery */
-        $nursery = $this->serializer->deserialize(self::JSON, Nursery::class, 'json', [Serializer::NORMALIZED_TYPE => Type::object(NormalizedNursery::class)]);
+        $nursery = $this->serializer->deserialize(self::JSON, Nursery::class, 'json', [
+            Serializer::NORMALIZED_TYPE => Type::object(NormalizedNursery::class),
+        ]);
 
         $this->assertInstanceOf(Nursery::class, $nursery);
 
@@ -83,7 +85,9 @@ final class SerializerTest extends BundleSetUp
         $cat->name = 'Kit';
         $nursery->cats[] = $cat;
 
-        $nursery = $this->serializer->serialize($nursery, 'json', [Serializer::NORMALIZED_TYPE => Type::object(NormalizedNursery::class)]);
+        $nursery = $this->serializer->serialize($nursery, 'json', [
+            Serializer::NORMALIZED_TYPE => Type::object(NormalizedNursery::class),
+        ]);
 
         $this->assertSame(self::JSON, $nursery);
     }

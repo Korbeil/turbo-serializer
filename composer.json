@@ -20,7 +20,7 @@
         }
     ],
     "require": {
-        "php": ">=8.3",
+        "php": ">=8.2",
         "jolicode/automapper-bundle": "^8.0",
         "mtarld/json-encoder-bundle": "@dev",
         "symfony/serializer": "^7.1@dev",

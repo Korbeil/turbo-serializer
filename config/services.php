@@ -7,6 +7,10 @@ use Symfony\Component\Serializer\SerializerInterface;
 use TurboSerializer\Serializer;
 
 return static function (ContainerConfigurator $container) {
+    $container->services()->defaults()
+        ->bind(SerializerInterface::class. '$turboSerializer', service('turbo_serializer'))
+    ;
+
     $container->services()
         ->set('turbo_serializer', Serializer::class)
         ->args([
@@ -15,6 +19,5 @@ return static function (ContainerConfigurator $container) {
             service(AutoMapperInterface::class),
             service('type_info.resolver.string'),
         ])
-        ->alias(SerializerInterface::class, 'turbo_serializer')
     ;
 };

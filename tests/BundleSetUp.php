@@ -20,6 +20,6 @@ abstract class BundleSetUp extends KernelTestCase
 
         static::bootKernel();
 
-        $this->serializer = static::getContainer()->get(SerializerInterface::class);
+        $this->serializer = static::getContainer()->get('turbo_serializer.alias');
     }
 }
