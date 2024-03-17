@@ -16,9 +16,10 @@ services:
   _defaults:
     autoconfigure: true
 
-  fakeService: # just to make the service available during tests
-    class: \stdClass
-    arguments:
-      - '@Symfony\Component\Serializer\SerializerInterface'
-
   DummyApp\NurseryTransformer: ~
+
+when@test:
+  services:
+    turbo_serializer.alias:
+      alias: turbo_serializer
+      public: true

@@ -10,7 +10,6 @@ use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
-use Symfony\Component\Serializer\SerializerInterface;
 use TurboSerializer\Tests\Fixtures\NormalizedNursery;
 use TurboSerializer\Tests\Fixtures\Nursery;
 use TurboSerializer\TurboSerializerBundle;
