@@ -8,7 +8,7 @@
     ],
     "require": {
         "php": ">=8.2",
-        "jolicode/automapper-bundle": "^8.0",
+        "jolicode/automapper": "^9.0",
         "mtarld/json-encoder-bundle": "^0.1",
         "symfony/serializer": "^7.1@dev",
         "symfony/type-info": "^7.1@dev",
@@ -26,6 +26,7 @@
         "phpunit/phpunit": "^10.5",
         "symfony/http-kernel": "^7.0",
         "symfony/framework-bundle": "^7.1@dev",
+        "symfony/dependency-injection": "^7.1@dev",
         "symfony/filesystem": "^7.1@dev",
         "symfony/yaml": "^7.0"
     }

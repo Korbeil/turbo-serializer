@@ -2,8 +2,13 @@
 
 namespace DummyApp;
 
-use AutoMapper\Bundle\AutoMapperBundle;
-use AutoMapper\Transformer\CustomTransformer\CustomPropertyTransformerInterface;
+use AutoMapper\Metadata\MapperMetadata;
+use AutoMapper\Metadata\SourcePropertyMetadata;
+use AutoMapper\Metadata\TargetPropertyMetadata;
+use AutoMapper\Metadata\TypesMatching;
+use AutoMapper\Symfony\Bundle\AutoMapperBundle;
+use AutoMapper\Transformer\PropertyTransformer\PropertyTransformerInterface;
+use AutoMapper\Transformer\PropertyTransformer\PropertyTransformerSupportInterface;
 use Mtarld\JsonEncoderBundle\JsonEncoderBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
@@ -49,17 +54,20 @@ class TestService
 
 }
 
-class NurseryTransformer implements CustomPropertyTransformerInterface
+class NurseryTransformer implements PropertyTransformerInterface, PropertyTransformerSupportInterface
 {
-    public function supports(string $source, string $target, string $propertyName): bool
+    public function supports(TypesMatching $types, SourcePropertyMetadata $source, TargetPropertyMetadata $target, MapperMetadata $mapperMetadata): bool
     {
         return
-            NormalizedNursery::class === $source &&
+            NormalizedNursery::class === $mapperMetadata->source &&
             Nursery::class === $target &&
-            'total' === $propertyName;
+            'total' === $source->property;
     }
 
-    public function transform(object|array $source): mixed
+    /**
+     * @param NormalizedNursery $source
+     */
+    public function transform(mixed $value, object|array $source, array $context): mixed
     {
         return \count($source->cats);
     }

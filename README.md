@@ -12,7 +12,7 @@ composer require korbeil/turbo-serializer
 return [
     // ...
     Mtarld\JsonEncoderBundle\JsonEncoderBundle::class => ['all' => true],
-    AutoMapper\Bundle\AutoMapperBundle::class => ['all' => true],
+    AutoMapper\Symfony\Bundle\AutoMapperBundle::class => ['all' => true],
     TurboSerializer\TurboSerializerBundle::class => ['all' => true],
 ];
 ```
